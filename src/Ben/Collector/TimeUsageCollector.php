@@ -8,7 +8,11 @@ class TimeUsageCollector
 
     protected $endTime;
 
-    public $id = 'timer';
+    public function getId()
+    {
+        return 'timer';
+    }
+
 
     public function prepare()
     {

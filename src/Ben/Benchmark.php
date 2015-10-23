@@ -1,5 +1,6 @@
 <?php
 namespace Ben;
+use Ben\BenchmarkRunner;
 
 class Benchmark
 {
@@ -32,10 +33,10 @@ class Benchmark
         $this->title = $title;
     }
 
-    public function call($n)
+    public function call($n, BenchmarkRunner $runner)
     {
         $call = $this->call;
-        return $call($n);
+        return $call($n, $runner);
     }
 }
 

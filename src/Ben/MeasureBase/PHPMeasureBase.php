@@ -20,6 +20,7 @@ class PHPMeasureBase extends MeasureBase
             'uname'   => php_uname(),
             'features' => [
                 'opcache_enabled' => extension_loaded('opcache'),
+                'apcu_enabled' => extension_loaded('apcu'),
                 'gc_enabled' => gc_enabled(),
             ],
         ];

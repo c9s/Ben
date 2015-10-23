@@ -3,6 +3,12 @@ namespace Ben\RevisionBase;
 
 class GitRevisionBase
 {
+
+    public function getRevisionSystemType()
+    {
+        return 'git';
+    }
+
     public function getRevisionInfo()
     {
         return [

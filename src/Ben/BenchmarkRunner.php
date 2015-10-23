@@ -26,7 +26,19 @@ class BenchmarkRunner
 
     public function addCollector($collector)
     {
-        $this->collectors[$collector->id] = $collector;
+        $this->collectors[$collector->getId()] = $collector;
+    }
+
+    public function getCollector($id)
+    {
+        if (isset($this->collectors[$id])) {
+            return $this->collectors[$id];
+        }
+    }
+
+    public function getAvailableCollectors()
+    {
+        return $this->collectors;
     }
 
     public function addMeasureBase($measureBase)
@@ -34,10 +46,21 @@ class BenchmarkRunner
         $this->measureBases[] = $measureBase;
     }
 
+    public function setRevisionBase($revisionBase)
+    {
+        $this->revisionBase = $revisionBase;
+    }
+
     public function run(BenchmarkSuite $suite)
     {
         $result = array();
         $this->logger->info("Collecting information...");
+
+        if ($this->revisionBase) {
+            // $result['revision_system'] = $this->revisionBase->getRevisionSystemType();
+            // $result['revision_info'] = $this->revisionBase->getRevisionInfo();
+            $result['revision'] = $this->revisionBase->getRevisionInfo();
+        }
 
         if (!empty($this->measureBases)) {
             foreach ($this->measureBases as $measureBase) {
@@ -56,7 +79,7 @@ class BenchmarkRunner
                 $collector->prepare();
             }
 
-            $benchmark->call($suite->N);
+            $benchmark->call($suite->N, $this);
 
             while ($collector = array_pop($preparedCollectors)) {
                 $collector->finalize();

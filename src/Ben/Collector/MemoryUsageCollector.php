@@ -1,7 +1,7 @@
 <?php
 namespace Ben\Collector;
 
-class MemoryUsageCollector
+class MemoryUsageCollector implements Collector
 {
     protected $usageBefore;
 
@@ -10,6 +10,13 @@ class MemoryUsageCollector
     protected $peakUsageBefore;
 
     protected $peakUsageAfter;
+
+    protected $reported = [];
+
+    public function getId()
+    {
+        return 'memory';
+    }
 
     public function prepare()
     {
