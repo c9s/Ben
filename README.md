@@ -4,7 +4,7 @@ A powerful benchmark toolkit designed in PHP.
 
 
 
-OBJECTIVE
+Objective
 ------------
 
 - Compare benchmark between different implementation in the same benchmark suite.
@@ -12,7 +12,7 @@ OBJECTIVE
 - Compare benchmark suite between different platform or base.
 
 
-SYNOPSIS
+Synopsis
 -----------
 
 ```php
@@ -91,5 +91,21 @@ $matrix = $comparator->compare($suite, $result, 'duration');
 var_dump($matrix);
 ;
 ```
+
+Collector
+------------------------
+
+- TimeUsageCollector - time usage collector by using `microtime()`.
+- XHProfCollector - xhprof collector by using `xhprof` extension.
+
+
+MeasureBase
+------------------------
+
+- PHPMeasureBase - Collect PHP runtime information.
+- OSMeasureBase - Collect operating system information.
+
+
+
 
 
