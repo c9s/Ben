@@ -7,6 +7,8 @@
         }
     ],
     "require": {
+        "ext-mongo": "*",
+        "corneltek/cliframework": "*"
     },
     "require-dev": { },
     "autoload": {
