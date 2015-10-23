@@ -7,6 +7,7 @@ use Ben\MeasureBase\OSMeasureBase;
 use Ben\RevisionBase\GitRevisionBase;
 use Ben\Collector\TimeUsageCollector;
 use Ben\BenchmarkComparator;
+use Ben\MatrixRenderer\ConsoleMatrixRenderer;
 use CLIFramework\Component\Table\Table;
 use CLIFramework\Component\Table\CompactTableStyle;
 use CLIFramework\Component\Table\BorderlessTableStyle;
@@ -44,17 +45,7 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
         var_dump($matrix);
         ;
 
-        $table = new Table;
-        $table->setHeaders(array_merge(["--"],array_keys($matrix)));
-        $table->setStyle(new CompactTableStyle);
-        $table->setStyle(new BorderlessTableStyle);
-        foreach ($matrix as $aId => $aRows) {
-            $row = [$aId];
-            foreach ($aRows as $bId => $ratio) {
-                $row[] = $ratio;
-            }
-            $table->addRow($row);
-        }
-        echo $table->render();
+        $renderer = new ConsoleMatrixRenderer;
+        echo $renderer->render($matrix);
     }
 }
