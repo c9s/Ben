@@ -8,9 +8,13 @@
     ],
     "require": {
         "ext-mongo": "*",
-        "corneltek/cliframework": "*"
+        "corneltek/cliframework": "*",
+        "lox/xhprof": "dev-master"
     },
     "require-dev": { },
+    "suggest": {
+        "lox/xhprof": "*"
+    },
     "autoload": {
         "psr-4": {
             "Ben\\": "src/Ben/"

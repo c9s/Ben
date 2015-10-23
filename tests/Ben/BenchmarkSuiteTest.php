@@ -6,6 +6,7 @@ use Ben\MeasureBase\PHPMeasureBase;
 use Ben\MeasureBase\OSMeasureBase;
 use Ben\RevisionBase\GitRevisionBase;
 use Ben\Collector\TimeUsageCollector;
+use Ben\Collector\XHProfCollector;
 use Ben\BenchmarkComparator;
 use Ben\MatrixRenderer\ConsoleMatrixRenderer;
 use CLIFramework\Component\Table\Table;
@@ -18,7 +19,7 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
 
     public function testSimple()
     {
-        $suite = new BenchmarkSuite;
+        $suite = new BenchmarkSuite('function_call', 'Benchmark for Different Kinds of Function Call');
         $suite->setN(100000);
 
         $suite->add(new Benchmark('call_user_func', function($N, $runner) {
@@ -33,7 +34,9 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
         }));
         $runner = new BenchmarkRunner(new Logger);
         $runner->setRevisionBase(new GitRevisionBase);
-        $runner->addCollector(new TimeUsageCollector);
+        $runner->pushCollector(new TimeUsageCollector);
+        $runner->pushCollector(new XHProfCollector);
+
         $runner->addMeasureBase(new PHPMeasureBase);
         $runner->addMeasureBase(new OSMeasureBase);
 
@@ -41,6 +44,7 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
         var_dump($result); 
 
         $comparator = new BenchmarkComparator;
+        // compare by duration
         $matrix = $comparator->compare($suite, $result, 'duration');
         var_dump($matrix);
         ;

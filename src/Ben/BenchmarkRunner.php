@@ -24,7 +24,7 @@ class BenchmarkRunner
         $this->logger = $logger;
     }
 
-    public function addCollector($collector)
+    public function pushCollector($collector)
     {
         $this->collectors[$collector->getId()] = $collector;
     }
@@ -76,13 +76,13 @@ class BenchmarkRunner
             $preparedCollectors = [];
             foreach ($this->collectors as $collector) {
                 $preparedCollectors[] = $collector;
-                $collector->prepare();
+                $collector->prepare($suite, $benchmark);
             }
 
             $benchmark->call($suite->N, $this);
 
             while ($collector = array_pop($preparedCollectors)) {
-                $collector->finalize();
+                $collector->finalize($suite, $benchmark);
             }
 
             foreach ($this->collectors as $collector) {

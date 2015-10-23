@@ -18,14 +18,13 @@ SYNOPSIS
 ```php
 use Ben\BenchmarkSuite;
 
-$suite = new BenchmarkSuite;
+$suite = new BenchmarkSuite('foo', 'Benchmark of Foo');
 
 function setupCallUserFunc(BenchmarkSuite $suite) {
     // prepare data
-
     $suite->add(new Benchmark('call_user_func', function($N) use (...) {
         for ($i = 0; $i < $N; $i++) {
-
+            call_user_func('intval');
         }
     }));
 }
@@ -62,7 +61,7 @@ $suite->add(new Benchmark('call_user_func_array', function($N, $runner) {
 }));
 $runner = new BenchmarkRunner(new Logger);
 $runner->setRevisionBase(new GitRevisionBase);
-$runner->addCollector(new TimeUsageCollector);
+$runner->pushCollector(new TimeUsageCollector);
 $runner->addMeasureBase(new PHPMeasureBase);
 $runner->addMeasureBase(new OSMeasureBase);
 

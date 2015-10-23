@@ -2,7 +2,7 @@
 namespace Ben\Collector;
 use Ben\BenchmarkSuite;
 
-class TimeUsageCollector
+class TimeUsageCollector implements Collector
 {
     protected $startTime;
 
