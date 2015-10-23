@@ -10,6 +10,7 @@ use Ben\Collector\TimeUsageCollector;
 use Ben\Collector\XHProfCollector;
 use Ben\BenchmarkComparator;
 use Ben\MatrixRenderer\ConsoleMatrixRenderer;
+use Ben\ResultRenderer\TextBarRenderer;
 use CLIFramework\Component\Table\Table;
 use CLIFramework\Component\Table\CompactTableStyle;
 use CLIFramework\Component\Table\BorderlessTableStyle;
@@ -53,5 +54,10 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
 
         $renderer = new ConsoleMatrixRenderer;
         echo $renderer->render($matrix);
+
+        $renderer = new TextBarRenderer;
+        echo $renderer->render($suite, $result, 'duration', function($suite, $duration) {
+            return $suite->N / $duration / 1000; // in ms
+        });
     }
 }
