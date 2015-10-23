@@ -10,7 +10,7 @@ class Benchmark
 
     protected $call;
 
-    public function __construct($name, callable $call)
+    public function __construct($name, callable $call = null)
     {
         $this->name = $name;
         $this->call = $call;

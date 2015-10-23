@@ -17,8 +17,26 @@ SYNOPSIS
 
 ```php
 use Ben\BenchmarkSuite;
+use Ben\Benchmark;
+
+class MyBenchmark extends Benchmark
+{
+    public function __construct()
+    {
+        parent::__construct('my_foo');
+    }
+
+    public function call($N)
+    {
+        for ($i = 0 ; $i < $N ; $i++) {
+            do_foo();
+        }
+    }
+}
 
 $suite = new BenchmarkSuite('foo', 'Benchmark of Foo');
+
+$suite->add(new MyBenchmark);
 
 function setupCallUserFunc(BenchmarkSuite $suite) {
     // prepare data
