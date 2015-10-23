@@ -1,10 +1,12 @@
 <?php
 namespace Ben\Collector;
+use Ben\BenchmarkSuite;
 
 interface Collector {
 
-    public function getResult();
 
     public function getId();
+
+    public function getResult(BenchmarkSuite $suite);
 
 }

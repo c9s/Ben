@@ -86,7 +86,7 @@ class BenchmarkRunner
             }
 
             foreach ($this->collectors as $collector) {
-                $collected = $collector->getResult();
+                $collected = $collector->getResult($suite);
                 foreach ($collected as $itemKey => $itemValue) {
                     $result['benchmark'][$benchmark->getName()][$itemKey] = $itemValue;
                 }

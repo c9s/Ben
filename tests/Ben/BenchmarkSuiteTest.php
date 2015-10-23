@@ -57,7 +57,7 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
 
         $renderer = new TextBarRenderer;
         echo $renderer->render($suite, $result, 'duration', function($suite, $duration) {
-            return $suite->N / $duration / 1000; // in ms
+            return $suite->N / $duration; // in ms
         });
     }
 }

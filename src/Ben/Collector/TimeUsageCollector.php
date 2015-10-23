@@ -24,10 +24,12 @@ class TimeUsageCollector implements Collector
         $this->endTime = microtime(true);
     }
 
-    public function getResult()
+    public function getResult(BenchmarkSuite $suite)
     {
+        $milliseconds = ($this->endTime - $this->startTime) * 1000;
         return [
-            'duration' => ($this->endTime - $this->startTime),
+            'duration' => $milliseconds,
+            'rate' => $suite->N / $milliseconds,
         ];
     }
 }

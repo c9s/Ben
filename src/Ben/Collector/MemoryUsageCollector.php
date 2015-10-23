@@ -1,5 +1,6 @@
 <?php
 namespace Ben\Collector;
+use Ben\BenchmarkSuite;
 
 class MemoryUsageCollector implements Collector
 {
@@ -30,7 +31,7 @@ class MemoryUsageCollector implements Collector
         $this->peakUsageAfter = memory_get_peak_usage();
     }
 
-    public function getResult()
+    public function getResult(BenchmarkSuite $suite)
     {
         return [
             'memory_usage' => $this->usageAfter - $this->usageBefore,

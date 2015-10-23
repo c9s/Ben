@@ -1,6 +1,8 @@
 <?php
 namespace Ben\Collector;
 use XHProfRuns_Default;
+use Ben\BenchmarkSuite;
+
 
 class XHProfCollector
 {
@@ -49,7 +51,7 @@ class XHProfCollector
         return $this->profile;
     }
 
-    public function getResult()
+    public function getResult(BenchmarkSuite $suite)
     {
         $result = [
             'xhprof_runid' => $this->runId,
