@@ -1,0 +1,19 @@
+{
+    "name": "corneltek/ben",
+    "authors": [
+        {
+            "name": "c9s",
+            "email": "yoanlin93+composer@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": { },
+    "autoload": {
+        "psr-4": {
+            "Ben\\": "src/Ben/"
+        }
+    },
+    "license": "MIT",
+    "version": "0.1.0"
+}
