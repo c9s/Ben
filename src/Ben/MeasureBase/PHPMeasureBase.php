@@ -13,7 +13,7 @@ class PHPMeasureBase extends MeasureBase
 
     public function getInformation()
     {
-        return [
+        $info = [
             'type'    => 'php',
             'os'      => PHP_OS,
             'version' => phpversion(),
@@ -21,9 +21,12 @@ class PHPMeasureBase extends MeasureBase
             'features' => [
                 'opcache_enabled' => extension_loaded('opcache'),
                 'apcu_enabled' => extension_loaded('apcu'),
+                'xdebug_enabled' => extension_loaded('xdebug'),
                 'gc_enabled' => gc_enabled(),
             ],
         ];
+
+        return $info;
     }
 
     public function getIdentifier()

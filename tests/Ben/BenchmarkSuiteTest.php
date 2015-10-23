@@ -4,6 +4,7 @@ use Ben\BenchmarkSuite;
 use Ben\BenchmarkRunner;
 use Ben\MeasureBase\PHPMeasureBase;
 use Ben\MeasureBase\OSMeasureBase;
+use Ben\MeasureBase\HardwareMeasureBase;
 use Ben\RevisionBase\GitRevisionBase;
 use Ben\Collector\TimeUsageCollector;
 use Ben\Collector\XHProfCollector;
@@ -39,6 +40,7 @@ class BenchmarkSuiteTest extends PHPUnit_Framework_TestCase
 
         $runner->addMeasureBase(new PHPMeasureBase);
         $runner->addMeasureBase(new OSMeasureBase);
+        $runner->addMeasureBase(new HardwareMeasureBase);
 
         $result = $runner->run($suite);
         var_dump($result); 
