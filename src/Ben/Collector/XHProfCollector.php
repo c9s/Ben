@@ -10,6 +10,8 @@ class XHProfCollector
 
     protected $runId;
 
+    protected $namespace;
+
     public function __construct(array $options = array())
     {
         $this->options = array_merge([
@@ -38,7 +40,8 @@ class XHProfCollector
         }, ARRAY_FILTER_USE_KEY);
 
         $runs = new XHProfRuns_Default($this->options['output_dir']);
-        $this->runId = $runs->save_run($this->profile, $suite->name . ':' . $benchmark->getName());
+        $this->namespace = $suite->name . ':' . $benchmark->getName();
+        $this->runId = $runs->save_run($this->profile, $this->namespace);
     }
 
     public function getProfile()
@@ -48,7 +51,10 @@ class XHProfCollector
 
     public function getResult()
     {
-        $result = [ 'xhprof_runid' => $this->runId ];
+        $result = [
+            'xhprof_runid' => $this->runId,
+            'xhprof_namespace' => $this->namespace,
+        ];
         if ($this->options['export_profile']) {
             $result['xhprof_profile'] = $this->profile;
         }
