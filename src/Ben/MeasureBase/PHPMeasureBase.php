@@ -6,6 +6,11 @@ namespace Ben\MeasureBase;
  */
 class PHPMeasureBase extends MeasureBase
 {
+    public function getType()
+    {
+        return 'php';
+    }
+
     public function getInformation()
     {
         return [

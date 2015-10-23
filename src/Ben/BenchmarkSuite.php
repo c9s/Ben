@@ -8,14 +8,9 @@ class BenchmarkSuite
 
     public $N = 50000;
 
-    public function __construct()
-    {
-    
-    }
-
     public function add(Benchmark $benchmark)
     {
-        $this->benchmark[] = $benchmark;
+      $this->benchmarks[$benchmark->getName()] = $benchmark;
     }
 
     public function setN($N)

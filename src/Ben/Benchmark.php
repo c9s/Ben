@@ -15,6 +15,18 @@ class Benchmark
         $this->call = $call;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+
     public function setTitle($title)
     {
         $this->title = $title;

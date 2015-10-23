@@ -1,28 +1,29 @@
 <?php
 namespace Ben\Collector;
+use Ben\BenchmarkSuite;
 
-class TimeCollector
+class TimeUsageCollector
 {
     protected $startTime;
 
     protected $endTime;
 
-    public $id;
+    public $id = 'timer';
 
     public function prepare()
     {
-        $this->startTime = microtime();
+        $this->startTime = microtime(true);
     }
 
     public function finalize()
     {
-        $this->endTime = microtime();
+        $this->endTime = microtime(true);
     }
 
     public function getResult()
     {
         return [
-            'microtime' => ($this->endTime - $this->startTime),
+            'duration' => ($this->endTime - $this->startTime),
         ];
     }
 }
