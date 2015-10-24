@@ -1,6 +1,7 @@
 <?php
 namespace Ben;
 use Ben\BenchmarkSuite;
+use Ben\Matrix;
 
 /**
  * BenchmarkComparator
@@ -32,7 +33,7 @@ class BenchmarkComparator
                 }
             }
         }
-        return $matrix;
+        return new Matrix($matrix);
     }
 }
 
